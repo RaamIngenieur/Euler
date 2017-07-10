@@ -8,8 +8,9 @@
 int main()
 {
 	unsigned long long n[100000];
-	unsigned long long lim = 600851475143,p;
-	unsigned long long Num = 600851475143;
+	unsigned long long Num = 123; 
+	unsigned long long lim = Num,p;
+	
 	bool isprime;
 
 	n[0] = 2;
@@ -29,21 +30,24 @@ int main()
 
 		if (isprime)
 		{
-			n[p + 1] = t;
+			n[p+1] = t;
 			p++;
 
-			if (Num % t == 0)
+			for (int j = 0; j <= p; j++)
 			{
-				Num = Num / t;
-			}
-			else
-			{
-				lim = Num / t;
+				if ((Num % n[j] == 0)&&(Num / n[j]!=1))
+				{
+					Num = Num / n[j];
+					j--;
+				}
+				else
+				{
+					lim = Num / n[j];
+				}
 			}
 		}
 	}
 
-	std::cout << std::endl<< p << std::endl;
 	std::cout << std::endl << "Highest prime factor is "<< Num << std::endl;
 	std::cin.get();
 
